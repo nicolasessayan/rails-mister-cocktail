@@ -1,9 +1,26 @@
-<h1>My cocktail list</h1>
-<%= link_to "Add a cocktail", new_cocktail_path, class: "btn btn-success" %>
-<ul>
-<% @cocktails.all.each do |cocktail| %>
-  <li><%= link_to cocktail_path(cocktail) do %>
-    <%= cocktail.name %>
-  <% end %></li>
-<% end %>
-</ul>
+
+<div class="navbar">
+  <div>My cocktail list</div>
+  <%= link_to "Add a cocktail", new_cocktail_path, class: "btn btn-success" %>
+</div>
+<div class="wrapper-custom">
+  <div class="container-custom">
+    <div class="row">
+      <% @cocktails.all.each do |cocktail| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+            <div class="card-description">
+              <h2><%= cocktail.name %></h2>
+              <p>...<% cocktail.ingredients.first(3).each do |ingredient| %>
+                    <%= ingredient.name %>...
+                  <% end %>
+              </p>
+            </div>
+            <a class="card-link" href="/cocktails/<%= cocktail.id %>" ></a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
